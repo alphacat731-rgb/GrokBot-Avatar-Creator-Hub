@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="GrokBot Avatar Creator Hub — create, edit and manage your avatars in one place.">
+<title>GrokBot Avatar Creator Hub</title>
+<style>
+:root{--bg:#070707;--surface:#0d0d0d;--surface2:#121212;--border:#242424;--border2:#303030;--text:#f5f5f5;--muted:#8f8f8f;--soft:#c9c9c9;--accent:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% -15%,rgba(255,255,255,.09),transparent 35%);z-index:-1}
+a{color:inherit;text-decoration:none}.container{width:min(1120px,calc(100% - 36px));margin:auto}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07)}
+.brand{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:800;letter-spacing:.12em}.brand img{width:34px;height:34px;border-radius:10px;border:1px solid #333;object-fit:cover}
+.nav{display:flex;align-items:center;gap:26px;color:#888;font-size:13px}.nav a:hover{color:#fff}.nav .nav-download{color:#eee;border:1px solid #333;background:#121212;padding:9px 13px;border-radius:9px}
+.hero{text-align:center;padding:112px 0 90px}.pill{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid #292929;border-radius:999px;background:#0d0d0d;color:#aaa;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.pill i{width:6px;height:6px;border-radius:50%;background:#d9d9d9}
+h1{font-size:clamp(44px,8vw,82px);line-height:.97;letter-spacing:-.065em;max-width:920px;margin:25px auto 22px}h1 span{color:#777}
+.lead{max-width:650px;margin:auto;color:#969696;font-size:18px}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:32px 0 16px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 19px;border-radius:10px;border:1px solid #353535;background:#f1f1f1;color:#080808;font-weight:800;font-size:14px;transition:.18s}.button:hover{transform:translateY(-2px)}.button.secondary{background:#111;color:#eee}.micro{font-size:12px;color:#666}
+.preview{margin:65px auto 0;width:min(930px,100%);border:1px solid #282828;border-radius:20px;background:linear-gradient(145deg,#151515,#0b0b0b);padding:9px;box-shadow:0 30px 100px rgba(0,0,0,.4)}
+.window{border:1px solid #252525;border-radius:14px;background:#090909;overflow:hidden;text-align:left}.windowbar{height:42px;border-bottom:1px solid #202020;display:flex;align-items:center;padding:0 15px;gap:6px}.dot{width:7px;height:7px;border-radius:50%;background:#363636}.window-title{margin-left:8px;font-size:10px;color:#555;letter-spacing:.08em;text-transform:uppercase}
+.dashboard{padding:25px;display:grid;grid-template-columns:1.25fr .75fr;gap:12px}.dash-card{border:1px solid #242424;border-radius:12px;background:#101010;padding:22px;min-height:145px}.dash-card.big{grid-row:span 2}.eyebrow{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:.12em}.dash-card h3{font-size:23px;letter-spacing:-.03em;margin:8px 0}.dash-card p{font-size:13px;color:#777;margin:0}.mini-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid #202020;color:#aaa;font-size:12px}.mini-row:first-of-type{margin-top:17px}
+section{padding:90px 0}.heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:30px}.heading h2{font-size:34px;letter-spacing:-.045em;margin:0}.heading p{color:#777;max-width:420px;margin:0;font-size:14px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.feature{border:1px solid #232323;background:#0d0d0d;border-radius:14px;padding:25px}.feature-num{font-size:10px;color:#666;letter-spacing:.12em}.feature h3{font-size:17px;margin:32px 0 8px}.feature p{font-size:13px;color:#7d7d7d;margin:0}
+.editors{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.editor{border:1px solid #232323;background:#0d0d0d;border-radius:14px;padding:23px}.editor-top{display:flex;justify-content:space-between;align-items:center}.number{width:31px;height:31px;border:1px solid #303030;border-radius:9px;display:grid;place-items:center;background:#141414;font-size:11px;font-weight:800}.open{font-size:11px;color:#777}.editor h3{margin:22px 0 5px;font-size:18px}.editor p{color:#777;font-size:12px;margin:0 0 18px}.editor a{font-size:12px;color:#ccc}
+.download{padding:40px;border:1px solid #292929;border-radius:20px;background:linear-gradient(135deg,#141414,#0b0b0b);text-align:center}.download h2{font-size:38px;letter-spacing:-.045em;margin:0 0 8px}.download p{color:#858585;max-width:570px;margin:0 auto 25px;font-size:14px}.checks{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;color:#777;font-size:11px}.checks span:before{content:"✓";color:#ccc;margin-right:6px}
+footer{padding:28px 0 42px;border-top:1px solid #1c1c1c;display:flex;justify-content:space-between;gap:15px;color:#666;font-size:12px}footer a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.nav{display:none}.hero{padding:75px 0 55px}.lead{font-size:16px}.preview{margin-top:45px}.dashboard{grid-template-columns:1fr;padding:15px}.dash-card.big{grid-row:auto}.features,.editors{grid-template-columns:1fr}.heading{display:block}.heading p{margin-top:8px}.download{padding:28px 18px}section{padding:62px 0}}
+</style>
+</head>
+<body>
+<div class="container">
+<nav>
+<a class="brand" href="#"><img src="https://raw.githubusercontent.com/alphacat731-rgb/LNK-APK/main/assets/grok_icon.png" alt=""><span>GROKBOT AVATAR CREATOR HUB</span></a>
+<div class="nav"><a href="#features">Features</a><a href="#editors">Editors</a><a href="#download">Download</a><a class="nav-download" href="https://github.com/alphacat731-rgb/LNK-APK/releases/latest/download/app-release.apk">Get the app</a></div>
+</nav>
+
+<main>
+<section class="hero">
+<div class="pill"><i></i> Android avatar workspace</div>
+<h1>Create without the clutter.<br><span>Your avatars, organized.</span></h1>
+<p class="lead">A focused home for creating, editing, downloading and managing your GrokBot avatars — all from one elegant Android app.</p>
+<div class="actions">
+<a class="button" href="https://github.com/alphacat731-rgb/LNK-APK/releases/latest/download/app-release.apk">↓&nbsp; Download for Android</a>
+<a class="button secondary" href="#features">Explore the hub</a>
+</div>
+<div class="micro">Free direct APK download · Hosted on GitHub</div>
+
+<div class="preview">
+<div class="window">
+<div class="windowbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="window-title">GrokBot Avatar Hub</span></div>
+<div class="dashboard">
+<div class="dash-card big"><div class="eyebrow">Creator space</div><h3>Ready to create?</h3><p>Jump into an editor or open your avatar library.</p><div class="mini-row"><span>Quick launch</span><strong>3 editors</strong></div><div class="mini-row"><span>Media library</span><strong>Images · GIFs · Videos</strong></div></div>
+<div class="dash-card"><div class="eyebrow">Library</div><h3>Avatar Hub</h3><p>Keep your creations together.</p></div>
+<div class="dash-card"><div class="eyebrow">Recent</div><h3>Creations</h3><p>Pick up where you left off.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="features">
+<div class="heading"><h2>Made for the workflow.</h2><p>Everything stays close at hand, without turning the app into another complicated dashboard.</p></div>
+<div class="features">
+<article class="feature"><div class="feature-num">01 / CREATE</div><h3>Fullscreen editors</h3><p>Launch your avatar editors directly inside the app, with a clean fullscreen experience.</p></article>
+<article class="feature"><div class="feature-num">02 / ORGANIZE</div><h3>Native Avatar Hub</h3><p>Browse, search, filter, favorite, import and preview your downloaded creations.</p></article>
+<article class="feature"><div class="feature-num">03 / MEDIA</div><h3>One creative library</h3><p>Keep PNG, JPG, GIF, MP4 and WebM avatar creations in one dedicated space.</p></article>
+</div>
+</section>
+
+<section id="editors">
+<div class="heading"><h2>Three ways to create.</h2><p>Your configured editor destinations are always one tap away from the home screen.</p></div>
+<div class="editors">
+<article class="editor"><div class="editor-top"><span class="number">01</span><span class="open">EDITOR</span></div><h3>Editor 1</h3><p>Open the first avatar creation workspace.</p><a href="https://bloub.vercel.app/" target="_blank" rel="noopener">Open editor ↗</a></article>
+<article class="editor"><div class="editor-top"><span class="number">02</span><span class="open">EDITOR</span></div><h3>Editor 2</h3><p>Open the second avatar creation workspace.</p><a href="https://avatars.bible-strong.app/" target="_blank" rel="noopener">Open editor ↗</a></article>
+<article class="editor"><div class="editor-top"><span class="number">03</span><span class="open">EDITOR</span></div><h3>Editor 3</h3><p>Open the third avatar creation workspace.</p><a href="https://grokbots.ai/studio" target="_blank" rel="noopener">Open editor ↗</a></article>
+</div>
+</section>
+
+<section id="download">
+<div class="download">
+<h2>Start creating.</h2>
+<p>Get the latest GrokBot Avatar Hub APK directly from GitHub. No Play Store subscription or account is required.</p>
+<div class="actions"><a class="button" href="https://github.com/alphacat731-rgb/LNK-APK/releases/latest/download/app-release.apk">↓&nbsp; Get the APK</a><a class="button secondary" href="https://github.com/alphacat731-rgb/LNK-APK/releases" target="_blank" rel="noopener">View releases</a></div>
+<div class="checks"><span>Free</span><span>Direct APK</span><span>GitHub-hosted</span></div>
+</div>
+</section>
+</main>
+
+<footer><span>© GrokBot Avatar Creator Hub</span><a href="https://github.com/alphacat731-rgb/LNK-APK" target="_blank" rel="noopener">Android project ↗</a></footer>
+</div>
+</body>
+</html>
