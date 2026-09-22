@@ -9,6 +9,14 @@
 <style>
 :root{--bg:#070707;--surface:#0d0d0d;--surface2:#121212;--border:#242424;--border2:#303030;--text:#f5f5f5;--muted:#8f8f8f;--soft:#c9c9c9;--accent:#fff}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+body:before{content:"";position:fixed;inset:-20%;pointer-events:none;background:radial-gradient(circle at 50% -15%,rgba(255,255,255,.09),transparent 35%),radial-gradient(circle at 12% 28%,rgba(255,255,255,.035),transparent 24%),radial-gradient(circle at 88% 62%,rgba(255,255,255,.025),transparent 26%);z-index:-3;animation:ambient 16s ease-in-out infinite alternate}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.16;background-image:radial-gradient(rgba(255,255,255,.16) .5px,transparent .5px);background-size:5px 5px;mix-blend-mode:screen}
+.aurora{position:fixed;inset:-35%;pointer-events:none;z-index:-2;filter:blur(80px);opacity:.28;background:conic-gradient(from 120deg,transparent 0 18%,rgba(255,255,255,.08) 27%,transparent 36% 58%,rgba(255,255,255,.05) 68%,transparent 78%);animation:spin 28s linear infinite}
+.grid-glow{position:fixed;left:-10%;right:-10%;bottom:-18%;height:55vh;pointer-events:none;z-index:-2;opacity:.13;background:linear-gradient(rgba(255,255,255,.25) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);background-size:55px 55px;transform:perspective(500px) rotateX(63deg);transform-origin:bottom center;mask-image:linear-gradient(to top,black,transparent 75%);animation:gridmove 12s linear infinite}
+.cursor-glow{position:fixed;width:260px;height:260px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(255,255,255,.07),transparent 65%);transform:translate(-50%,-50%);mix-blend-mode:screen;opacity:0;transition:opacity .3s}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes ambient{to{transform:translate3d(2%,3%,0) scale(1.04)}}@keyframes gridmove{to{background-position:0 55px,55px 0}}
+@keyframes float{50%{transform:translateY(-8px)}}@keyframes reveal{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% -15%,rgba(255,255,255,.09),transparent 35%);z-index:-1}
 a{color:inherit;text-decoration:none}.container{width:min(1120px,calc(100% - 36px));margin:auto}
 nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07)}
@@ -18,11 +26,11 @@ nav{height:76px;display:flex;align-items:center;justify-content:space-between;bo
 h1{font-size:clamp(44px,8vw,82px);line-height:.97;letter-spacing:-.065em;max-width:920px;margin:25px auto 22px}h1 span{color:#777}
 .lead{max-width:650px;margin:auto;color:#969696;font-size:18px}
 .actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:32px 0 16px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 19px;border-radius:10px;border:1px solid #353535;background:#f1f1f1;color:#080808;font-weight:800;font-size:14px;transition:.18s}.button:hover{transform:translateY(-2px)}.button.secondary{background:#111;color:#eee}.micro{font-size:12px;color:#666}
-.preview{margin:65px auto 0;width:min(930px,100%);border:1px solid #282828;border-radius:20px;background:linear-gradient(145deg,#151515,#0b0b0b);padding:9px;box-shadow:0 30px 100px rgba(0,0,0,.4)}
+.preview{margin:65px auto 0;animation:float 7s ease-in-out infinite;transform-style:preserve-3d;transition:transform .2s ease-out;will-change:transform;width:min(930px,100%);border:1px solid #282828;border-radius:20px;background:linear-gradient(145deg,#151515,#0b0b0b);padding:9px;box-shadow:0 30px 100px rgba(0,0,0,.4)}
 .window{border:1px solid #252525;border-radius:14px;background:#090909;overflow:hidden;text-align:left}.windowbar{height:42px;border-bottom:1px solid #202020;display:flex;align-items:center;padding:0 15px;gap:6px}.dot{width:7px;height:7px;border-radius:50%;background:#363636}.window-title{margin-left:8px;font-size:10px;color:#555;letter-spacing:.08em;text-transform:uppercase}
 .dashboard{padding:25px;display:grid;grid-template-columns:1.25fr .75fr;gap:12px}.dash-card{border:1px solid #242424;border-radius:12px;background:#101010;padding:22px;min-height:145px}.dash-card.big{grid-row:span 2}.eyebrow{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:.12em}.dash-card h3{font-size:23px;letter-spacing:-.03em;margin:8px 0}.dash-card p{font-size:13px;color:#777;margin:0}.mini-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid #202020;color:#aaa;font-size:12px}.mini-row:first-of-type{margin-top:17px}
 section{padding:90px 0}.heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:30px}.heading h2{font-size:34px;letter-spacing:-.045em;margin:0}.heading p{color:#777;max-width:420px;margin:0;font-size:14px}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.feature{border:1px solid #232323;background:#0d0d0d;border-radius:14px;padding:25px}.feature-num{font-size:10px;color:#666;letter-spacing:.12em}.feature h3{font-size:17px;margin:32px 0 8px}.feature p{font-size:13px;color:#7d7d7d;margin:0}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.feature{border:1px solid #232323;background:#0d0d0d;border-radius:14px;padding:25px}.feature{transition:transform .25s ease,border-color .25s ease,background .25s ease}.feature:hover{transform:translateY(-6px) rotateX(1deg);border-color:#383838;background:#111}.editor{transition:transform .25s ease,border-color .25s ease}.editor:hover{transform:translateY(-6px);border-color:#383838}.feature-num{font-size:10px;color:#666;letter-spacing:.12em}.feature h3{font-size:17px;margin:32px 0 8px}.feature p{font-size:13px;color:#7d7d7d;margin:0}
 .editors{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.editor{border:1px solid #232323;background:#0d0d0d;border-radius:14px;padding:23px}.editor-top{display:flex;justify-content:space-between;align-items:center}.number{width:31px;height:31px;border:1px solid #303030;border-radius:9px;display:grid;place-items:center;background:#141414;font-size:11px;font-weight:800}.open{font-size:11px;color:#777}.editor h3{margin:22px 0 5px;font-size:18px}.editor p{color:#777;font-size:12px;margin:0 0 18px}.editor a{font-size:12px;color:#ccc}
 .download{padding:40px;border:1px solid #292929;border-radius:20px;background:linear-gradient(135deg,#141414,#0b0b0b);text-align:center}.download h2{font-size:38px;letter-spacing:-.045em;margin:0 0 8px}.download p{color:#858585;max-width:570px;margin:0 auto 25px;font-size:14px}.checks{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;color:#777;font-size:11px}.checks span:before{content:"✓";color:#ccc;margin-right:6px}
 footer{padding:28px 0 42px;border-top:1px solid #1c1c1c;display:flex;justify-content:space-between;gap:15px;color:#666;font-size:12px}footer a{text-decoration:underline;text-underline-offset:3px}
@@ -30,13 +38,14 @@ footer{padding:28px 0 42px;border-top:1px solid #1c1c1c;display:flex;justify-con
 </style>
 </head>
 <body>
+<div class="aurora"></div><div class="grid-glow"></div><div class="cursor-glow" id="cursorGlow"></div>
 <div class="container">
 <nav>
 <a class="brand" href="#"><img src="https://raw.githubusercontent.com/alphacat731-rgb/LNK-APK/main/assets/grok_icon.png" alt=""><span>GROKBOT AVATAR CREATOR HUB</span></a>
 <div class="nav"><a href="#features">Features</a><a href="#editors">Editors</a><a href="#download">Download</a><a class="nav-download" href="https://github.com/alphacat731-rgb/LNK-APK/releases/latest/download/app-release.apk">Get the app</a></div>
 </nav>
 
-<main>
+<main id="mainContent">
 <section class="hero">
 <div class="pill"><i></i> Android avatar workspace</div>
 <h1>Create without the clutter.<br><span>Your avatars, organized.</span></h1>
@@ -89,5 +98,27 @@ footer{padding:28px 0 42px;border-top:1px solid #1c1c1c;display:flex;justify-con
 
 <footer><span>© GrokBot Avatar Creator Hub</span><a href="https://github.com/alphacat731-rgb/LNK-APK" target="_blank" rel="noopener">Android project ↗</a></footer>
 </div>
+<script>
+const glow=document.getElementById('cursorGlow');
+const preview=document.querySelector('.preview');
+let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;glow.style.opacity='1';});
+addEventListener('pointerleave',()=>glow.style.opacity='0');
+function animate(){
+ cx+=(mx-cx)*.12; cy+=(my-cy)*.12;
+ glow.style.left=cx+'px'; glow.style.top=cy+'px';
+ requestAnimationFrame(animate);
+}
+animate();
+if(preview && matchMedia('(prefers-reduced-motion: no-preference)').matches){
+ preview.addEventListener('pointermove',e=>{
+   const r=preview.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+   preview.style.transform=`perspective(1100px) rotateY(${x*4}deg) rotateX(${-y*3}deg) translateY(-2px)`;
+ });
+ preview.addEventListener('pointerleave',()=>preview.style.transform='');
+}
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.style.animation='reveal .7s cubic-bezier(.2,.7,.2,1) both'}),{threshold:.12});
+document.querySelectorAll('section:not(.hero),.feature,.editor,.download').forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
